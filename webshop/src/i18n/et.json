@@ -1,0 +1,18 @@
+{
+       "nav": {
+        "shops": "Meie poed",
+        "contact": "Kontakteeru meiega",
+        "cart": "Ostukorvi",
+        "login": "Logi sisse",
+        "signup": "Registreeru"
+      },
+      "product": {
+        "title": "Nimi",
+        "price": "Hind",
+        "description": "Kirjeldus",
+        "category": "Kategooria",
+        "image": "Pilt",
+        "rating": "Reiting",
+        "actions": "Tegevused"
+      }
+    }

@@ -1,0 +1,33 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.sum, .sum-active {
+  padding: 20px;
+  font-size: 20px;
+}
+
+.sum-active {
+  border-color: rgb(227 6 140);
+}
+
+.city-active {
+  text-decoration: underline;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.picture {
+  width: 100px;
+  height: 100px;
+}
+
+.inactive {
+  filter: grayscale(100%);
+}

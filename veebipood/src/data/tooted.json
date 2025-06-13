@@ -1,0 +1,26 @@
+[
+  {
+    "nimi": "Vichy",
+    "hind": 1.5,
+    "aktiivne": true,
+    "pilt": "https://carlsberg-group-2022.euwest01.umbraco.io/media/pxnmaajm/vichy-classique-raspberry-1-5l-pet-fitlap-ean-4740019003130.png"
+  },
+  {
+    "nimi": "Coca",
+    "hind": 1.8,
+    "aktiivne": true,
+    "pilt": "https://www.battlefieldbeers.co.uk/clear_cf/media-catalog-product-c-o-coca-cola_original_taste_glass_bottle_330ml_2000x0.webp"
+  },
+  {
+    "nimi": "Fanta",
+    "hind": 1.2,
+    "aktiivne": false,
+    "pilt": "https://www.selver.ee/img/800/800/resize/5/0/5000112651638.jpg"
+  },
+  {
+    "nimi": "Sprite",
+    "hind": 1.3,
+    "aktiivne": true,
+    "pilt": "https://alkostore.ee/wp-content/uploads/img.bb706416dd2945bf.jpg"
+  }
+]

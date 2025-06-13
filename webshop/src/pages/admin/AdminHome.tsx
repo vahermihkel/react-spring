@@ -1,0 +1,27 @@
+import { Button } from "react-bootstrap"
+import { Link } from "react-router-dom"
+
+function AdminHome() {
+  return (
+    <div>
+      <Link to="/admin/manage-categories">
+        <Button variant="primary">Manage categories</Button>
+      </Link>
+      
+      <Link to="/admin/manage-shops">
+        <Button variant="secondary">Manage shops</Button>
+      </Link>
+
+      <Link to="/admin/add-product">
+       <Button variant="success">Add product</Button>
+      </Link>
+       
+      <Link to="/admin/manage-products">
+        <Button variant="warning">Manage products</Button>
+      </Link>
+      {/* <Button variant="info" as={Link} to="/admin/add-product">Info</Button> */}
+    </div>
+  )
+}
+
+export default AdminHome
