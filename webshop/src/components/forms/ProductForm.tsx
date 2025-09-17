@@ -31,12 +31,15 @@ function ProductForm(params: {product: Product, id: number}) {
     // }
     if (product.title === "") {
       toast.error("Must add title!");
+      return;
     }
     if (product.price < 0) {
       toast.error("Cannot add price as negative number!");
+      return;
     }
     if (product.category.id === 0) {
       toast.error("Must add category!");
+      return;
     }
     if (params.product.title === "" && params.id === 0) {
       // products.push(product);
@@ -53,7 +56,8 @@ function ProductForm(params: {product: Product, id: number}) {
         method: method, 
         body: JSON.stringify(product),
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + sessionStorage.getItem("token")
           }
       }).then(
         () => {

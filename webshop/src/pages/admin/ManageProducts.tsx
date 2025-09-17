@@ -16,24 +16,17 @@ function ManageProducts() {
     setProducts(dbProducts);
   }, [dbProducts]);
 
-  // useEffect(() => {
-  //   fetch(url)
-  //     .then(res => res.json())
-  //     .then(json => {
-  //       setProducts(json || []);
-  //       setDbProducts(json || []);
-  //     })
-  // }, [url]);
-
   const deleteProduct = (productId: number) => {
     if (productId === 0) {
       return;
     }
-    const index = products.findIndex(product => product.id === productId);
-    products.splice(index,1);
-    fetch(url, { method: "PUT", body: JSON.stringify(products) }).then(
-      () => {setProducts(products.slice())}
-    );
+    fetch(url + "/" + productId, { 
+      method: "DELETE", 
+      headers: {
+        "Authorization": "Bearer " + sessionStorage.getItem("token")
+      }      
+    }).then(res => res.json())
+      .then(json => setProducts(json));
   }
 
   const searchFromProducts = () => {

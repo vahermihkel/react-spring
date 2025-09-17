@@ -37,7 +37,6 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>,
 )
 
-// 1h varus
 
 // 5. L 17.05 taaskasutamine, otsing, ID unikaalsuse kontroll
 // 6. N 22.05 kell 18.00 online makse, context
@@ -48,16 +47,17 @@ createRoot(document.getElementById('root')!).render(
 //11. P 08.06 kell 9
 //12. R 13.06 kell 17.00 autentimine
 //13. P 15.06 kell 9.00-13.30
-//14. P 22.06 kell 9
-//15. K 25.06 kell 17.30
-//16. P 29.06 kell 17.00
-//17. T 01.07 kell 17.30
-//18. T 15.07 kell 17.30-20.00  lõpuprojekti arutlus
+//xx. P 22.06 kell 9     superadminile kasutajate nägemine. veateated
+//xx. K 25.06 kell 17.30
+//xx. P 29.06 kell 17.00
+//14. T 01.07 kell 17.30
+//15. R 04.07 kell 17.00 pakiautomaadid, makse, cache
+//16.disainer E 07.07 kell 17.30
+//17. R 11.07 kell 17.00 logid, profiilid, muutujad application.properties, CRON
+//18. P 27.07 kell 10.00-12.00  lõpuprojekti arutlus
 
 // service+++
 // bean -> ise tekitamine+++
-// autentimine: JWT token. API kinnipanek. Rollid.
-// ostukorv
+// autentimine: JWT token. API kinnipanek. Rollid.+++
+// ostukorv+++
 // makse osas -> backendi tõsta + kontroll
-
-// logid, profiilid, muutujad application.properties, CRON

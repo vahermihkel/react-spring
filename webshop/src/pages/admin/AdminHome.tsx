@@ -1,7 +1,11 @@
+import { useContext } from "react"
 import { Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
+import { AuthContext } from "../../context/AuthContext"
 
 function AdminHome() {
+  const {role} = useContext(AuthContext);
+
   return (
     <div>
       <Link to="/admin/manage-categories">
@@ -19,7 +23,11 @@ function AdminHome() {
       <Link to="/admin/manage-products">
         <Button variant="warning">Manage products</Button>
       </Link>
-      {/* <Button variant="info" as={Link} to="/admin/add-product">Info</Button> */}
+
+      {role === "SUPERADMIN" &&
+      <Link to="/admin/manage-persons">
+        <Button variant="info">Manage persons</Button>
+      </Link>}
     </div>
   )
 }

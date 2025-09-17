@@ -1,12 +1,36 @@
-import { ReactNode, useState } from "react"
+import { ReactNode, useEffect, useState } from "react"
 import { AuthContext } from "./AuthContext";
 
 export const AuthContextProvider = ({children}: {children: ReactNode}) => {
-  const [loggedIn, setLoggedIn] = useState(sessionStorage.getItem("token") === "suvalised-tähed-märgid-numbrid");
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [role, setRole] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  const login = () => {
+  useEffect(() => {
+    if (sessionStorage.getItem("token") === null || sessionStorage.getItem("token") === "") {
+      setLoading(false);
+      return;
+    }
+
+    fetch("http://localhost:8080/person", {
+      headers: {
+        "Authorization" : "Bearer " + sessionStorage.getItem("token")
+      }
+    })
+      .then(res => res.json())
+      .then(json => {
+        if (json.email && json.role) {
+          setLoggedIn(true);
+          setRole(json.role);
+        }
+        setLoading(false);
+      })
+  }, []);
+
+  const login = (jsonToken: string, role: string) => {
     setLoggedIn(true);
-    sessionStorage.setItem("token", "suvalised-tähed-märgid-numbrid");
+    setRole(role);
+    sessionStorage.setItem("token", jsonToken);
   }
 
   const logout = () => {
@@ -15,7 +39,7 @@ export const AuthContextProvider = ({children}: {children: ReactNode}) => {
   }
 
   return (
-    <AuthContext.Provider value={{loggedIn, login, logout}}>
+    <AuthContext.Provider value={{role, loggedIn, loading, login, logout}}>
       {children}
     </AuthContext.Provider>
   )

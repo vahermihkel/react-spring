@@ -17,9 +17,17 @@ import Menu from './components/Menu'
 import Cart from './pages/global/Cart'
 import { useContext } from 'react'
 import { AuthContext } from './context/AuthContext'
+import { Spinner } from 'react-bootstrap'
+import Profile from './pages/auth/Profile'
+import ManagePersons from './pages/admin/ManagePersons'
+import EditPerson from './pages/admin/EditPerson'
 
 function App() {
-  const {loggedIn} = useContext(AuthContext);
+  const {role, loggedIn, loading} = useContext(AuthContext);
+
+  if (loading) {
+    return <Spinner />
+  }
 
   return (
     <>
@@ -34,12 +42,25 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         {loggedIn ? <>
+          <Route path='/profile' element={<Profile />} />
+         
+        </> :
+        <Route path='/profile' element={<Navigate to="/login" />} />
+      }
+        {loggedIn && (role === "ADMIN" || role === "SUPERADMIN") ? <>
           <Route path='/admin' element={<AdminHome />} />
           <Route path='/admin/add-product' element={<AddProduct />} />
           <Route path='/admin/edit-product/:id' element={<EditProduct />} />
           <Route path='/admin/manage-products' element={<ManageProducts />} />
           <Route path='/admin/manage-categories' element={<ManageCategories />} />
           <Route path='/admin/manage-shops' element={<ManageShops />} />
+
+         { role === "SUPERADMIN" &&
+          <>
+          <Route path='/admin/manage-persons' element={<ManagePersons />} />
+          <Route path='/admin/edit-person/:id' element={<EditPerson />} />
+          </>
+          }
         </> :
         <Route path='/admin/*' element={<Navigate to="/login" />} />
       }

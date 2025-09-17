@@ -14,7 +14,7 @@ import { useAppSelector } from '../redux/hooks';
 function Menu() {
   const { t, i18n } = useTranslation();
   const { cartSum } = useContext(CartSumContext);
-  const { loggedIn, logout } = useContext(AuthContext);
+  const { role, loggedIn, logout } = useContext(AuthContext);
   const count = useAppSelector(state => state.count.value);
   const differentProducts = useAppSelector(state => state.differentProducts.value);
 
@@ -30,7 +30,9 @@ function Menu() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            {loggedIn && <Nav.Link as={Link} to="/admin">Admin</Nav.Link>}
+            {console.log(role)}
+            {loggedIn && (role === "ADMIN" || role === "SUPERADMIN") && <Nav.Link as={Link} to="/admin">Admin</Nav.Link>}
+            {loggedIn && <Nav.Link as={Link} to="/profile">Profile</Nav.Link>}
             <Nav.Link as={Link} to="/shops">{t("nav.shops")}</Nav.Link>
             <Nav.Link as={Link} to="/contact">{t("nav.contact")}</Nav.Link>
             <Nav.Link as={Link} to="/cart">{t("nav.cart")}</Nav.Link>

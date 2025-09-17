@@ -37,8 +37,8 @@ function AuthForm(params: {action: string}) {
           navigate("/login");
         } else if (params.action === "login") {
           navigate("/admin");
-          sessionStorage.setItem("token", json.token);
-          login();
+          console.log(json);
+          login(json.token, json.role);
         }
       })
   }

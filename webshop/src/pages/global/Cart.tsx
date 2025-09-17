@@ -11,11 +11,14 @@ import styles from "../../css/Cart.module.css";
 import minus from "../../assets/minus.png";
 import plus from "../../assets/plus.png";
 import remove from "../../assets/remove.png";
+import { AuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 
 function Cart() {
   const [cart, setCart] = useState<CartProduct[]>(JSON.parse(localStorage.getItem("cart") || "[]"));
   const {setCartSum} = useContext(CartSumContext);
+  const {loggedIn} = useContext(AuthContext);
   const dispatch = useAppDispatch();
 
   const empty = () => {
@@ -55,6 +58,19 @@ function Cart() {
     setCartSum(calculateCartSum(cart));
   }
 
+  const order = () => {
+    fetch("http://localhost:8080/orders", {
+      method: "POST",
+      body: JSON.stringify(cart),
+      headers: {
+        "Authorization": "Bearer " + sessionStorage.getItem("token"),
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.text()) // .json() tagastus JSON kujul
+      .then(link => window.location.href = link) // tagastus String kujul
+  }
+
   // const calculateCartSum = () => {
   //   let sum = 0;
   //   cart.forEach(cartProduct => sum += cartProduct.product.price * cartProduct.quantity);
@@ -86,7 +102,13 @@ function Cart() {
         <div>
           {calculateCartSum(cart).toFixed(2)}
           <ParcelMachines />
-          <Payment sum={calculateCartSum(cart)} />
+          {/* <Payment sum={calculateCartSum(cart)} /> */}
+          {loggedIn ? 
+            <button onClick={order}>Telli</button> : 
+            <Link to="/login">
+              <button>Logi sisse</button>
+            </Link>  
+           }
         </div> :
         <div>Cart is empty</div>
       }

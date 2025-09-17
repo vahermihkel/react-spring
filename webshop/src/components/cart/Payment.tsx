@@ -26,7 +26,8 @@ function Payment(params: {sum: number}) {
         if (json.error) {
           alert(json.error.message);
         } else {
-          window.location.href = json.payment_link;
+          console.log(JSON.stringify(json));
+          // window.location.href = json.payment_link;
         }
       })
   }
